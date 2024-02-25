@@ -1,64 +1,110 @@
-str = "Hello"
-str1 = len(str) # считает длину строки
-print(str1)
-print(len(str))
+# Lists(списки(массивы))
+some_list = [23, "world", 965.45]
+print(some_list)
+print(len(some_list)) # так же можно функции len выводить кол-во значений в массиве
+another_list = some_list[:2] # как и со строками вырезали нужное кол-во элементов
+print(another_list)
+some_list[0] = 23500
+print(some_list)
+new_list = some_list + another_list # со списками работает конкатенация
+print(new_list)
 
-# indexing
-print(str[0])
-print(str[-1]) # узнаём какой символ находится в конце строки
+# add items(добавление элементов)
+new_list.append("item") # этот метод добавляет новый элемент в конец списка
+print(new_list)
+new_list.insert(3, "middle")
+print(new_list)
 
-# slicing
-print(str[0:3]) # выбрали область которая будет вырезана
-print(str[-3:-1])
-print(str[:2]) # вырезали сначала до 2 символа
-print(str[::3]) # вырезали символы с интервалом 3
-print(str[::-1]) # вывод перевёрнутой строки
+# removing items(удаление элементов)
+new_list.pop() # по умолчанию удаляет первый элемент с конца(-1) но это можно изменить
+new_list.pop(0)
+print(new_list)
 
-# свойства и методы строк
+deleted_item = new_list.pop(2) # удалили элемент и вернули его в эту переменную
+print(deleted_item)
+# deleted_item = new_list.remove()  удаляет первое названное значение
+# print(deleted_item) тут находится значение None потому что remove ничего не возвращает
 
-# immutable (неизменное)
-str = "Word"
-print(str[3])
-# str[3] = "k" строки являются неизменными
-# print(str)
-str1 = str[:3]
+number_list = [3, 2, 1]
+letter_list = ["c", "b", "a"]
+number_list.sort() # сортирует по возрастанию и так же не возвращает значения reverse(сортирует в обратном порядке)
+letter_list.sort() # по убыванию
+print(new_list)
+print(letter_list)
 
-# concatenable
-str2 = str1 + "k" # вот как можно заменять строки
-print(str2)
+number_list.append(letter_list) # добавляет список внутрь другого списка
+print(number_list)
 
-# multiplication (умножение)    строки в этом яп являются объектами по этому и есть методы работы со строками
-cookies = "cookie "
-print(cookies * 3) # выведет строку с 3 словами cookie
+# dictionaries(словари - тобиж объекты)
+car = {
+    'model': 'opel',
+    'year': 2003,
+    'price': 500
+}
+print(car['model'])
+car['wheels'] = 4 # добавили в словарь ключ wheels со значением 4
+del car['wheels'] # удалили ключ значение(если не указать их то удалится сам словарь)
+print(car)
+car.clear() # удалит все ключи и элементы находящиеся в нём
+man = {
+    'name': "Same",
+    'age': 19,
+    'hobbies': ['programming', 'photo', 'music'],
+    'children': {
+         'girl': 'Mart',
+    }
+}
+print(man['hobbies'][0]) # вызвали значение находящееся в листе hobbies(по индексу) который внутри объекта
 
-print(cookies.upper()) # этот метод делает все буквы заглавными
-print(cookies.lower())
-print(cookies) # так как строки неизменные то методы никак их не изменяют и создают новые строки
-low_string = "Low string"
-print(low_string.split()) # выводит строку в виде листа(массива) делит по пробелам(по умолчанию)
-print(low_string.split("w")) # w разделитель
+children = man['children']
+# print(children['girl']
+print(man['children']['girl'])
+man['children']['son'] = 'Jon' # добавил во вложенный объект(словарь) ключ значение
+print(man)
 
-# formation
-name = "Jonn"
-age = 18
-# print("name " + str(age) + "years old")   str(age) преобразует int тип в строку, есть ещё один способ     1 способ почему-то не работает как нужно
-name_and_age = "My name is {0}. I\'m {1} years old".format(name,age)
-print(name_and_age)
+print(man.keys()) # выводит все ключи словаря
+print(man.values()) # выводит все значения
+print(man.items()) # выводит все элементы(получаем структуру в скобках которая называется tuple(кортеж))
 
-week_days = 'There are 7 days in a week: {5},{0},{3},{1},{2},{4},{Sat}.'\
-.format('Monday', 'Wednesday', 'Thursday', 'Tuesday', 'Friday', 'Sunday', Sat ='Saturday')
-print(week_days)
+# у Python есть множественное присваивание:
+x = y = z = 7
+print(x, y, z)
+x, y, z = 4, 8, 12
+print(x, y, z)
+# это может использоваться для распаковки tuple
 
-float_result = 450 / 8.4
-print(float_result)
-print(('The result: {0:1.2f}'.format(float_result))) # {}- это плейсхолдер
-# отформатировали полученый результат где 1 это минимальное кол-во всех символов в числе а 2f(f-float) максимальное кол-во символов полсе запятой
-# если 1-е число указано больше чем то которое мы получили то перед этим числом получается пробел в длинне равной отсутствубщим числам
+# Tuple(кортеж) является не изменяемым(так что, если захочется изменить tuple вместо этого придётся создать новый)
+tuple1 = 1, 2, 3 # можно не указывать скобки так как они нужны чтобы было понятно tuple это или нет
+tuple2 = ('a', 'b', 'c')
+tuple3 = (12, 'middle', 43.5)
+tuple4 = tuple1 + tuple2
+print(tuple4)
 
-name = "Jonn"
-age = 18
-name_and_age = "My name is {0}. I\'m {1} years old".format(name,age)
-print(name_and_age)
-name_and_age = f"My name is {name}. I\'m {age} years old" # вместо того чтобы указывать .format мы перед строкой написали f(обозначает fstring)
-print(name_and_age)
-print("My name is %s. I\'m %d years old" %(name,age)) # s-строка d-число (этот метод нет смысла использовать так как в будущем он будет поддерживаться)
+one, two, tree = tuple3
+print(one,two,tree)
+t = (1,2,3,4,5)
+print(t.count(3)) # покажет сколько раз встречается 3(тоже самое работает и со строками)
+
+print(t.index(3)) # покажет под каким индексом находится это значение(либо индекс самого первого такого же значения)
+
+# Sets(множества(не упорядоченная коллекция уникальных элементов))
+colors = {'red', 'green', 'blue'} # такие же скобки как и у словаря
+print(colors)
+print(type(colors))
+
+colors2 = set() # создали пустое множество
+print(type(colors2))
+
+number_list = [54, 25, 62, 62]
+text_tuple = ('hohoho', 'hahaha', 'hehehe')
+set_from_list = set(number_list) # создали множество и хоть в number_list есть 2 одинаковых значения при создании sets будет только одно
+set_from_tuple = set(text_tuple)
+print(set_from_list, set_from_tuple)
+
+set_from_list.add(55)
+set_from_tuple.add('hihihi')
+print(set_from_list,set_from_tuple)
+
+set_from_list.pop() # удалили рандомный элемент и возвращает его
+set_from_tuple.remove('hihihi') # не возвращает(есть метод discard который делает тоже самое но при отсутствии удаляемого элемента не будет ошибки)
+print(set_from_list,set_from_tuple) # и конечно же можно можно использовать clear для очистки всего множества
